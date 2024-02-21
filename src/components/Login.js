@@ -134,14 +134,15 @@ const Login=()=>{
 
 
     return (
-    <div className="flex flex-col justify-center content-center	">
+    // <div className="flex flex-col justify-center content-center	">
    
-        <span className="text-5xl mr-auto ml-auto mt-[20%] md:mt-[13%] md:text-6xl sm:mt-[17%] font-extralight text-[#FCFCFC] ">Synclink.</span>
-        <Basic/>
+    //     <span className="text-5xl mr-auto ml-auto mt-[20%] md:mt-[13%] md:text-6xl sm:mt-[17%] font-extralight text-[#FCFCFC] ">Synclink.</span>
+    //     <Basic/>
         
         
 
-    </div>
+    // </div>
+    <h1>this is login page</h1>
     )
 }
 

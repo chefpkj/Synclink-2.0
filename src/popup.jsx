@@ -1,7 +1,8 @@
 import React from "react"
-import {render} from "react-dom";
+import ReactDom from "react-dom/client";
 import { createBrowserRouter,Outlet,RouterProvider} from "react-router-dom";
 import Login from "./components/Login";
+import App from "./App.js";
 
 
 const Applayout=()=>{
@@ -42,8 +43,10 @@ function Popup(){
         <div>
         <h1>Hello, worldsss</h1>
         <p>This is a simple popup</p>
+        <App/>
         </div>
     )
 }
-
-render(<Popup/>, document.getElementById("react-target"));
+const root=ReactDom.createRoot(document.getElementById("root"));
+// root.render(<RouterProvider router={appRouter}/>);
+root.render(<Popup/>);
