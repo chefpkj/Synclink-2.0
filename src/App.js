@@ -12,7 +12,8 @@ const App = () => {
         <Route path="viewLink" element={<ViewLinkScreen />} index />
         <Route path="addLink" element={<AddLinkScreen />} />
         <Route path="login" element={<LoginScreen />} />
-        <Route path="*" element={<HomePageScreen />} />
+        {/* <Route path="*" element={<HomePageScreen />} /> */}
+        <Route path="*" element={<LoginScreen />} />
       </Routes>
     </>
   );
