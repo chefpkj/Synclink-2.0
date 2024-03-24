@@ -1,4 +1,5 @@
-import React,{useState,useRef} from "react";
+import React,{useState} from "react";
+import { useNavigate } from "react-router-dom";
 import {Formik} from "formik";
 import rocket_logo from "../../../public/assets/images/rocket_logo2.png"
 import { Link } from "react-router-dom";
@@ -9,20 +10,9 @@ import { baseURL } from "../config/constants";
 
 const Basic = () => {
 
-   //function to go to the home page 
-   const clicked=useRef(null);
-
-   function pkj(){
-       clicked.current.click();
-   }
-   function go_to_home(){
-       const root=document.getElementById("buttonClicked");
-       root.addEventListener("click",pkj());
-   }
-
-  
 
     const [invalidMsg,setInvalidMsg]=useState(false);
+    const navigate=useNavigate();
 
     if(invalidMsg==true){
         setTimeout(() => {
@@ -31,6 +21,9 @@ const Basic = () => {
     }
 
     function postData(data) {
+
+      
+    debugger;
     
       fetch(`${baseURL}/auth/login`, {
           method: 'POST',
@@ -49,7 +42,9 @@ const Basic = () => {
       })
       .then(token => {
           localStorage.setItem("synclink_x-auth-token", token);
-          go_to_home();
+          navigate("addLink")
+          
+           
       })
       .catch(error => {
           // Handle errors here
@@ -124,7 +119,7 @@ const Basic = () => {
           </form>
         )}
       </Formik>
-      <Link to="/home"><div ref={clicked}></div></Link>
+      
     </div>
   );}
 

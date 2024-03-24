@@ -8,7 +8,7 @@ import './popup.css';
 
 const root = ReactDom.createRoot(document.getElementById('root'));
 root.render(
-  <div className="bg-[#161C26]">
+  <div>
       <BrowserRouter>
     <App/>
   </BrowserRouter>
