@@ -2,6 +2,7 @@ import React,{useState,useEffect} from 'react'
 import { Link,useParams,useNavigate } from 'react-router-dom'
 import { baseURL, trashUrl } from '../config/constants';
 import { InfoPageShimmer } from './components/Shimmer';
+import QRCode from "react-qr-code";
 
 const ViewLinkScreen = () => {
 
@@ -25,34 +26,27 @@ const ViewLinkScreen = () => {
       }
     );
     const json = await data.text();
-    console.log(json)
     setLinkInfo(json);
     setIsLoaded(true);
   };
 
 
    //function to delete the particular link
-   function deleteData(){
-    fetch(baseURL+"/note/"+id,{
+   async function deleteData(){
+    const responsee=await fetch(baseURL+"/note/"+id,{
         method:'DELETE', 
         headers:{
             "x-auth-token":localStorage.getItem("synclink_x-auth-token"),
         }
     })
-    .then((response)=>{
-        if(response.status===200){
-            // console.log("SUCCESS");
-            // dispatch(setLink("Link sent to bin."))
-            // dispatch(setReduxTrigger(true));      //to trigger popup of SUCCESS on main page
-            navigate("/home");
-            return response.json();
-        }
-        else{
-            // dispatch(setLink("Kindly go to home page and refresh it."))
-            // dispatch(setReduxTrigger(true));   //to trigger popup of something went wrong
-            return 0;
-        }
-    })
+
+    const response=await responsee.json();
+    if(response?.status===200){
+      navigate("/home")
+    }
+    else{
+      console.log("Something went wrong in deleting link.");
+    }
   }
 
 
@@ -82,7 +76,12 @@ const ViewLinkScreen = () => {
                     <textarea rows={6} disabled={true} value={linkInfo} className="bg-[#2F353D] mt-7 p-2 w-[97%] rounded-md hover:bg-[#4C525F] text-sm font-light text-white focus:outline-none focus:bg-[#4C525F] hover:cursor-text "/>
                 </div>
              </>
-        
+
+
+             {/* <div className='bg-white flex justify-center'>
+             <QRCode value={linkInfo} />
+             </div>
+         */}
         
               {/* my delete button */}
               <>
