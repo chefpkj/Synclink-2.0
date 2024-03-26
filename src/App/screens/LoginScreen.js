@@ -1,4 +1,4 @@
-import React,{useState} from "react";
+import React,{useState,useEffect} from "react";
 import { useNavigate } from "react-router-dom";
 import {Formik} from "formik";
 import rocket_logo from "../../../public/assets/images/rocket_logo2.png"
@@ -14,6 +14,14 @@ const Basic = () => {
     const [invalidMsg,setInvalidMsg]=useState(false);
     const navigate=useNavigate();
 
+
+    useEffect(()=>{
+      const token=localStorage.getItem("synclink_x-auth-token");
+      if(token){
+        navigate("home")
+      }
+    },[])
+
     if(invalidMsg==true){
         setTimeout(() => {
             setInvalidMsg(false);
@@ -22,10 +30,9 @@ const Basic = () => {
 
     function postData(data) {
 
-      
-    debugger;
     
-      fetch(`${baseURL}/auth/login`, {
+    
+      fetch(`${baseURL}/login`, {
           method: 'POST',
           headers: {
               "Content-Type": "application/json",
@@ -41,8 +48,9 @@ const Basic = () => {
           }
       })
       .then(token => {
-          localStorage.setItem("synclink_x-auth-token", token);
-          navigate("addLink")
+        const temp=JSON.parse(token);
+          localStorage.setItem("synclink_x-auth-token", temp?.token);
+          navigate("home")
           
            
       })

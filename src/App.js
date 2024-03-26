@@ -9,10 +9,9 @@ const App = () => {
   return (
     <>
       <Routes>
-        <Route path="viewLink" element={<ViewLinkScreen />} index />
+        <Route path="viewLink/:id" element={<ViewLinkScreen />} />
         <Route path="addLink" element={<AddLinkScreen />} />
-        <Route path="login" element={<LoginScreen />} />
-        {/* <Route path="*" element={<HomePageScreen />} /> */}
+        <Route path="home" element={<HomePageScreen />} />
         <Route path="*" element={<LoginScreen />} />
       </Routes>
     </>
