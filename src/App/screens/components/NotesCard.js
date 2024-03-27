@@ -3,6 +3,7 @@ import { Link,useNavigate } from "react-router-dom";
 import GenericModal from "./GenericModal";
 // import { useDispatch } from "react-redux";
 // import { setReduxTrigger,setLink } from "../utils/triggerSlice";
+import QRCode from "react-qr-code";
 
 
 const NotesCard=({link,linkId })=>{    
@@ -58,15 +59,13 @@ const NotesCard=({link,linkId })=>{
 
       {(handleModule)&&<GenericModal 
      open={handleModule}
-     title="Edit Module"
+     title="QR Code"
      caption={"Please fill below details to edit a module."}
      onClose={handleShowModal}
      style={{ maxHeight: '85%',  maxWidth: '72rem' }}
      content={
       
-        <div>
-            this is my modal
-        </div>
+        <QRCode value={link} />
      
      }
     />}
