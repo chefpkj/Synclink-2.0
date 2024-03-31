@@ -31,7 +31,7 @@ const NotesCard=({link,linkId })=>{
             }
            )}}
           className="bg-[#2F353D] h-[2.9rem] mt-2 mx-1 p-2 rounded-md hover:bg-[#4C525F] hover:text-white hover:cursor-pointer flex flex-row items-center">            
-        <span className="text-sm font-normal tracking-wide">{(link?.length>50)?(link.slice(0,50)+"..."):(link)}</span>
+        <span className="text-sm font-normal tracking-wide">{(link?.length>33)?(link.slice(0,33)+"..."):(link)}</span>
         {/* {(showButton?(<EditButton linkId={linkId}/>):(""))} */}
         <div className="ml-auto mr-5 flex gap-2">
 
@@ -60,9 +60,9 @@ const NotesCard=({link,linkId })=>{
       {(handleModule)&&<GenericModal 
      open={handleModule}
      title="QR Code"
-     caption={"Please fill below details to edit a module."}
+     caption={"Scan below QR to get your link"}
      onClose={handleShowModal}
-     style={{ maxHeight: '85%',  maxWidth: '72rem' }}
+     style={{ maxHeight: '85%',  maxWidth: '80%' }}
      content={
       
         <QRCode value={link} />
