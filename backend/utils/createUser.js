@@ -9,7 +9,7 @@ const createUser=async(userEmail,userPassword,userLinks)=>{
         const user=new Users({
             email:userEmail,
             password:userPassword,
-            links:userLinks
+            notes:[]
         });
 
         const salt=await bcrypt.genSalt(10);

@@ -1,4 +1,5 @@
 import Users from "../models/users.js";
+import mongoose from 'mongoose';
 
 const getAllNotes = async (req_body_id) => {
   //getting the user information to send ALLNotes
@@ -8,11 +9,12 @@ const getAllNotes = async (req_body_id) => {
 
 const addNotes = async (req_body) => {
   try {
-    //getting the user from db
     let user = await Users.findById(req_body?.id);
     console.log(user,"end")
-    user.notes = [...user?.notes, ...req_body?.notes];
-    console.log("this is it",user.notes);
+    user.notes = [...user?.notes, {
+      note:req_body?.note
+    }
+    ];
     const result = await user.save();
     return result;
   } catch (err) {
@@ -23,11 +25,11 @@ const addNotes = async (req_body) => {
 
 const getSpecificNotes = async (req_body) => {
   try {
-    //getting the user from db
     let user = await Users.findById(req_body?.id);
-    //checking if notes id is pesent or not
-    const result = user?.notes[req_body?.notesId];
-    if (!result) {
+   const noteId = req_body?.notesId;
+   const note = user.notes.find(note => note._id.toString() === noteId);
+
+    if (!note) {
       return {
         status: 400,
         details: "Note with given Id not found.",
@@ -35,7 +37,7 @@ const getSpecificNotes = async (req_body) => {
     } else {
       return {
         status: 200,
-        details: result,
+        details: note,
       };
     }
   } catch (err) {
@@ -52,15 +54,23 @@ const updateNotes = async (req_body) => {
     //getting user from Db
     const user = await Users.findById(req_body?.id);
     //checking if notes id is pesent or not
-    const result = user?.notes[req_body?.notesId];
-    if (result === undefined) {
-      return {
-        status: 400,
-        details: "Note with given Id not found.",
-      };
-    }
+    const noteId = req_body?.notesId;
+   const note = user.notes.find(note => note._id.toString() === noteId);
+   if (!note) {
+    return {
+      status: 400,
+      details: "Note with given Id not found.",
+    };
+  }
     //if note is present make the update
-    user.notes[req_body?.notesId] = req_body?.updatedNotes;
+
+   user.notes=user?.notes?.map((eachNotes)=>{
+    if(eachNotes?._id===noteId){
+      eachNotes.note=req_body?.updatedNotes
+    }
+    return eachNotes;
+   })
+    // user?.notes[req_body?.notesId] = req_body?.updatedNotes; 
     const SavedResult = await user.save();
     return {
       status: 200,
@@ -80,15 +90,17 @@ const deleteNotes = async (req_body) => {
     //getting user from Db
     const user = await Users.findById(req_body?.id);
     //checking if notes id is pesent or not
-    const result = user?.notes[req_body?.notesId];
-    if (result === undefined) {
+    // const result = user?.notes[req_body?.notesId];
+    const noteId = req_body?.notesId;
+    const result=user?.notes.find(note => note._id.toString() === noteId);
+    if (!result) {
       return {
         status: 400,
         details: "Note with given Id not found.",
       };
     }
     //if note is present delete the notes
-    user.notes.splice(req_body?.notesId, 1);
+    user.notes.splice(user.notes.indexOf(result), 1);
     await user.save();
     return {
       status: 200,
