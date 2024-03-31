@@ -9,7 +9,7 @@ function doFilter(searchTxt,allLinks){
 
   console.log("clicked!!")
   return allLinks.filter((link) =>
-  link?.toLowerCase()?.includes(searchTxt?.toLowerCase()));
+  link?.note?.toLowerCase()?.includes(searchTxt?.toLowerCase()));
 }
 
 

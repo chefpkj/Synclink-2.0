@@ -25,7 +25,10 @@ const ViewLinkScreen = () => {
         }
       }
     );
-    const json = await data.text();
+
+    let json = await data.json();
+    
+    console.log(json);
     setLinkInfo(json);
     setIsLoaded(true);
   };
@@ -73,7 +76,7 @@ const ViewLinkScreen = () => {
                 <div className="flex justify-center">
                     {/* <span className="bg-white">{linkInfo.link}</span> */}
                     {/* <input type="text" value={linkInfo.link} className="bg-[#3C434E] p-2  text-white"/> */}
-                    <textarea rows={6} disabled={true} value={linkInfo} className="bg-[#2F353D] mt-7 p-2 w-[97%] rounded-md hover:bg-[#4C525F] text-sm font-light text-white focus:outline-none focus:bg-[#4C525F] hover:cursor-text "/>
+                    <textarea rows={6} disabled={true} value={linkInfo?.note} className="bg-[#2F353D] mt-7 p-2 w-[97%] rounded-md hover:bg-[#4C525F] text-sm font-light text-white focus:outline-none focus:bg-[#4C525F] hover:cursor-text "/>
                 </div>
              </>
 

@@ -15,7 +15,7 @@ const AddLinkScreen = () => {
       return 0;
     }    
       
-    const data = { "notes": [dataa] };
+    const data = { "note": dataa };
  
      fetch(baseURL+"/notes", {
       method: 'POST', 
