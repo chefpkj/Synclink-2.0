@@ -7,7 +7,7 @@ export const MainShimmer=()=>{
 
     return (
         <div className="">
-        {Array.from({length:9},(_, index)=>{
+        {Array.from({length:8},(_, index)=>{
             return (
                 <div className="animate-pulse"  key={index}><NotesCard/></div>
             )

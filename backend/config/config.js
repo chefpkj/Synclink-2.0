@@ -19,13 +19,17 @@ let configs={
         "auth":{
             secret:secretKey
         }
+        
 
     }
+    
 }
 
 let env=process.env.NODE_ENV || "development";
 
 configs=configs[env];
 
+
+console.log(configs?.dbUrl);
 let {dbUrl,auth}=configs;
 export {dbUrl,auth};

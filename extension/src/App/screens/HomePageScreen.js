@@ -49,7 +49,7 @@ const HomePageScreen=()=>{
      {/* my Header component */}
      <>
         <div className="bg-[#2F353D] h-[2.65rem] flex justify-between">
-        <span className="text-xl mx-3 mt-2 font-extralight	 text-[#FCFCFC]"><a href="/">Synclink.</a></span>
+        <span className="text-xl mx-3 mt-2 font-extralight hover:cursor-pointer text-[#FCFCFC]">Synclink.</span>
         {/* my search component */}
         <>
         <input type="text" value={searchTxt} onChange={(e)=>{SetSearchTxt(e.target.value)}} onKeyDown={(e) => {

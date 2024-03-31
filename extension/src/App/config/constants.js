@@ -1,5 +1,9 @@
 export const url="http://localhost:4000/api";
+
+
 export const baseURL="http://localhost:4000";
+
+// export const baseURL="https://synclink-3qyo.onrender.com";
 
 export const crossUrl="https://img.icons8.com/ios/50/null/cancel.png";
 
