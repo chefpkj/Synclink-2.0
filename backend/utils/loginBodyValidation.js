@@ -1,5 +1,5 @@
 import joi from "joi";
-const isValid = (req_body) => {
+export const isValid = (req_body) => {
   const schema = joi.object({
     email: joi.string().email().required(),
     password: joi.string().required(),
@@ -8,4 +8,14 @@ const isValid = (req_body) => {
   return schema.validate(req_body);
 };
 
-export default isValid;
+
+export const isValidSignUp = (req_body) => {
+  const schema = joi.object({
+    email: joi.string().email().required(),
+    password: joi.string().required(),
+    name:joi.string().required(),
+    userName:joi.string().required(),
+  });
+  return schema.validate(req_body);
+};
+

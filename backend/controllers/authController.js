@@ -1,6 +1,6 @@
 import DbLayer from "../databaseLayer/authDbLayer.js";
 import createUser from "../utils/createUser.js";
-import isValid from "../utils/loginBodyValidation.js";
+import {isValid,isValidSignUp} from "../utils/loginBodyValidation.js";
 
 const login = async (req, res) => {
   const { error } = isValid(req.body);
@@ -24,24 +24,34 @@ const login = async (req, res) => {
 
 const signup = async (req, res) => {
   try {
-    const { error } = isValid(req.body);
+    const { error } = isValidSignUp(req.body);
     if (error) {
       return res.status(400).json({
         status:400,
         message:error.details[0].message
       });
     }
-    const result = await createUser(req.body?.email, req.body?.password);
+    const result = await createUser(req.body?.email, req.body?.password,req.body?.userName,req.body?.name);
     if (result.status === 400) {
       return res.status(400).json({
         status:400,
         message:result?.details
       });     
     }
-    return res.status(200).json({
-      status:200,
-      message:`Congratulations, your account has been successfully created.`
-    })
+    else if(result.status===200){
+      return res.status(200).json({
+        status:200,
+        message:`Congratulations, your account has been successfully created.`
+      })
+    }
+    else{
+      return res.status(result?.status).json({
+        status:result?.status,
+        message:result?.details
+      })
+
+    }
+    
   } catch (err) {
     return res.status(400).json({
       status:400,

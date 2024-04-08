@@ -9,6 +9,7 @@ router
   .get(jwtControls.authorizeToken, notesController.getAllNotes)
   .post(jwtControls.authorizeToken, notesController.addNotes);
 
+
 router
   .route("/note/:id")
   .get(jwtControls.authorizeToken, notesController.getSpecificNotes)

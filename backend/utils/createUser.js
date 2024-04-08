@@ -1,7 +1,7 @@
 import bcrypt from "bcryptjs";
 import Users from "../models/users.js";
 
-const createUser=async(userEmail,userPassword,userLinks)=>{
+const createUser=async(userEmail,userPassword,userName,name)=>{
 
 
     try{
@@ -9,7 +9,8 @@ const createUser=async(userEmail,userPassword,userLinks)=>{
         const user=new Users({
             email:userEmail,
             password:userPassword,
-            notes:[]
+            userName:userName,
+            name:name
         });
 
         const salt=await bcrypt.genSalt(10);
@@ -31,9 +32,15 @@ const createUser=async(userEmail,userPassword,userLinks)=>{
           // Duplicate key error for the email field
           errorMessage = `Email '${userEmail}' already exists.`;
         }
+        else if (err.code === 11000 && err.keyPattern && err.keyPattern.userName === 1) {
+          // Duplicate key error for the email field
+          errorMessage = `Username '${userName}' already exists.`;
+        }
+
+        console.log("Something went wrong in createUsers in utils")
         return {
-          status: 400,
-          details: errorMessage,
+          status: 500,
+          details: errorMessage
         };
       }
 

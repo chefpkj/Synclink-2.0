@@ -1,6 +1,5 @@
 import notesDbLayer from "../databaseLayer/notesDbLayer.js";
 const getAllNotes = async (req, res) => {
- 
   const AllLink = await notesDbLayer.getAllNotes(req.body.id);
   return res.status(200).send(AllLink);
 };
