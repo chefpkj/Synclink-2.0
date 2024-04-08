@@ -3,48 +3,47 @@ import { baseURL } from '../config/constants';
 import { useNavigate,Link } from "react-router-dom";
 
 
+
 const AddLinkScreen = () => {
 
   const [searchTxt,SetSearchTxt]=useState("");
   const navigate=useNavigate();
 
    //  function to post data to the server 
-   function postData(dataa){ 
-    if(dataa===""){
-      navigate("home")
+   async function postData(dataa) {
+    if (dataa === "") {
+      navigate("home");
       return 0;
-    }    
-      
-    const data = { "note": dataa };
- 
-     fetch(baseURL+"/notes", {
-      method: 'POST', 
-      headers: {
-        "Content-Type": "application/json",
-        'Access-Control-Allow-Origin':'*',
-        "x-auth-token":localStorage.getItem("synclink_x-auth-token"),
-      },
-      body: JSON.stringify(data),
-      })
-      .then((response) => {      
-        if(response.status === 200){
-        return response.json();     
-        }
-        else{     
-        // dispatch(setLink("An error has occurred."));     
-        // dispatch(setReduxTrigger(true));        //to trigger popup of something went wrong 
-        console.log("error: Something went wrong in post notes api.",response);
-        return 0;
-       }
-      })
-      .then((data) => {
-        if(data!==0){
-        navigate("home");
-        // dispatch(setLink("Link"));  
-        // dispatch(setReduxTrigger(true));
-        }
-      });
     }
+  
+    const data = { "note": dataa };
+  
+    try {
+      const response = await fetch(baseURL + "/notes", {
+        method: 'POST',
+        headers: {
+          "Content-Type": "application/json",
+          'Access-Control-Allow-Origin': '*',
+          "x-auth-token": localStorage.getItem("synclink_x-auth-token"),
+        },
+        body: JSON.stringify(data),
+      });
+  
+      if (response.status === 200) {
+        const responseData = await response.json();
+        navigate("home");
+        // do something with responseData if needed
+      } else {
+        console.log("error: Something went wrong in post notes api.", response);
+        navigate("home")
+        return 0;
+      }
+    } catch (error) {
+      console.error("Error occurred:", error);
+      return 0;
+    }
+  }
+  
 
 
   return (
