@@ -33,10 +33,6 @@ const SharedNotesScreen = () => {
         });
   
         const json = await data.json();
-        console.log({
-            "this is me":json?.message
-        })
-  
         setFilterData(json?.message);
         setAllData(json?.message);
         setIsLoaded(true);

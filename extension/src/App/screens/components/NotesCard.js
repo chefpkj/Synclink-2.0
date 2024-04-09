@@ -29,8 +29,8 @@ const NotesCard = ({ link, linkId, isSharedNotes }) => {
         <div
           onClick={() => {
             if (isSharedNotes) {
-              // navigate(`/viewLink/${link?._id}`);
-              console.log("navigate kr de bhai");
+              navigate(`/viewSharedLink/${link?._id}`);
+              // console.log("navigate kr de bhai");
             } else {
               navigate(`/viewLink/${linkId}`);
             }

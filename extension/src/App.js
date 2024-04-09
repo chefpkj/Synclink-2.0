@@ -9,6 +9,7 @@ import FolderSharedIcon from "@mui/icons-material/FolderShared";
 import PeopleAltIcon from "@mui/icons-material/PeopleAlt";
 import SettingsIcon from "@mui/icons-material/Settings";
 import SharedNotesScreen from "./App/screens/SharedNotesScreen";
+import ViewSharedLinkScreen from "./App/screens/ViewSharedLinkScreen";
 
 const App = () => {
 
@@ -18,6 +19,7 @@ const App = () => {
     <>
       <Routes>
         <Route path="viewLink/:id" element={<ViewLinkScreen />} />
+        <Route path="viewSharedLink/:id" element={<ViewSharedLinkScreen/>} />
         <Route path="addLink" element={<AddLinkScreen />} />
         <Route path="home" element={<HomePageScreen />} />
         <Route path="login" element={<LoginScreen />} />

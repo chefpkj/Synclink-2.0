@@ -1,7 +1,8 @@
 import React,{useState,useEffect} from 'react'
 import { Link,useParams,useNavigate } from 'react-router-dom'
-import { baseURL, trashUrl } from '../config/constants';
+import { baseURL } from '../config/constants';
 import { InfoPageShimmer } from './components/Shimmer';
+import DeleteIcon from '@mui/icons-material/Delete';
 import QRCode from "react-qr-code";
 
 const ViewLinkScreen = () => {
@@ -86,12 +87,12 @@ const ViewLinkScreen = () => {
              </div>
          */}
         
-              {/* my delete button */}
-              <>
+        <div>
                  <div onClick={()=>{deleteData();}} id="buttonClicked" className="bg-[#2F353D] text-[#FD8C85] w-[97%] h-[2.9rem] mt-[5%] p-2 rounded-md hover:bg-[#4C525F] hover:text-[#fa7c73] hover:cursor-pointer flex ml-auto mr-auto text-sm font-normal tracking-wide ">
-                    <img src={trashUrl}/><span className="pt-1.5 pl-2">Delete item</span>
+                    <div className='flex items-center'><DeleteIcon/></div>
+                    <div className=" flex items-center ml-[0.20rem]"><div>Delete item</div></div>
                  </div>
-              </>
+             </div>
         
              
             </>
