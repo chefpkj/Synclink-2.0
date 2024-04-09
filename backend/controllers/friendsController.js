@@ -36,6 +36,7 @@ const getAllFriends=async(req,res)=>{
 }
 
 const deleteFriend=async(req,res)=>{
+    req.body.IDtoDelete=req.params?.id;
     const result=await friendsDbLayer.deleteFriend(req.body);
     if(result.status===200){
         return res.status(200).json({status:200,message:result?.message})
