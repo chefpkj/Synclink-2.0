@@ -66,7 +66,7 @@ const HomePageScreen = () => {
                 }
               }}
               placeholder="Search type"
-              className="grow m-2 bg-[#3C434E] p-2 text-sm font-light text-white rounded-md focus:outline-none focus:bg-[#4C525F]"
+              className="w-48 m-2 bg-[#3C434E] p-2 text-sm font-light text-white rounded-md focus:outline-none focus:bg-[#4C525F]"
             />
           </>
           <Link

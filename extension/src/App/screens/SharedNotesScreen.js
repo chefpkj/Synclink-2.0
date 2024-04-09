@@ -65,15 +65,10 @@ const SharedNotesScreen = () => {
                   }
                 }}
                 placeholder="Search type"
-                className="grow m-2 bg-[#3C434E] p-2 text-sm font-light text-white rounded-md focus:outline-none focus:bg-[#4C525F]"
+                className="w-48 mr-[4.7rem] m-2 bg-[#3C434E] p-2 text-sm font-light text-white rounded-md focus:outline-none focus:bg-[#4C525F]"
               />
             </>
-            <Link
-            to="home"
-            className="text-sm mx-4 pt-3 px-2 font-extralight	 text-[#FCFCFC] hover:bg-[#4C525F] hover:rounded-md hover:text-white hover:cursor-pointer"
-          >
-            <span>Cancel</span>
-          </Link>
+           
           </div>
         </>
         {/* my body component  */}

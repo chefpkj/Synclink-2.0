@@ -10,6 +10,10 @@ import PeopleAltIcon from "@mui/icons-material/PeopleAlt";
 import SettingsIcon from "@mui/icons-material/Settings";
 import SharedNotesScreen from "./App/screens/SharedNotesScreen";
 import ViewSharedLinkScreen from "./App/screens/ViewSharedLinkScreen";
+import FriendsScreen from "./App/screens/FriendsScreen";
+import SettingsScreen from "./App/screens/SettingsScreen";
+import AddFriendScreen from "./App/screens/AddFriendScreen";
+
 
 const App = () => {
 
@@ -23,10 +27,12 @@ const App = () => {
         <Route path="addLink" element={<AddLinkScreen />} />
         <Route path="home" element={<HomePageScreen />} />
         <Route path="login" element={<LoginScreen />} />
-        <Route path="friends" element={<div className="text-white">friends</div>} />
+        <Route path="friends" element={<FriendsScreen/>} />
         <Route path="shared" element={<SharedNotesScreen/>} />
-        <Route path="settings" element={<div className="text-white">settings</div>} />
+        <Route path="settings" element={<SettingsScreen/>} />
+        <Route path="addFriend" element={<AddFriendScreen/>} />
         <Route path="*" element={<LoginScreen />} />
+        
       </Routes>
 
       {}
