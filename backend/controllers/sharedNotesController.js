@@ -15,9 +15,6 @@ const getAllSharedNotes=async (req,res)=>{
 const getSpecificSharedNotes=async(req,res)=>{
     req.body.noteId=req.params?.id;
     const result=await sharedNotesDbLayer.getSpecificSharedNotes(req.body);
-    console.log({
-        "t=pkj":result
-    })
     if(result?.status===200){
         return res.status(200).json({status:200,message:result?.message});
     }
